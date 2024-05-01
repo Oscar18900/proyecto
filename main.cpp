@@ -136,9 +136,7 @@ int main(){
 			    Persona persona(ID_Trabajador, nombre, apellidoPaterno, apellidoMaterno, sexo, edad, direccion, telefono, puesto, departamento, horasTrabajadas, costoPorHora, horasTrabajadas * costoPorHora);
 			    agregar(lista, persona);
 			    break;
-			case 2:
-				imprimirLista(lista);
-				break;
+		
 	
 		}
 	}while(opc != 6);
@@ -166,25 +164,5 @@ void agregar(Nodo *&lista, Persona persona) {
     }
 }
 
-void imprimirLista(Nodo *lista) {
-    Nodo *actual = lista;
-    while (actual != NULL) {
-        cout << "ID Trabajador: " << actual->persona.getID_Trabajador() << endl;
-        cout << "Nombre: " << actual->persona.getNombre() << endl;
-        cout << "Apellido Paterno: " << actual->persona.getApellidoPaterno() << endl;
-        cout << "Apellido Materno: " << actual->persona.getApellidoMaterno() << endl;
-        cout << "Sexo: " << actual->persona.getSexo() << endl;
-        cout << "Edad: " << actual->persona.getEdad() << endl;
-        cout << "Dirección: " << actual->persona.getDireccion() << endl;
-        cout << "Teléfono: " << actual->persona.getTelefono() << endl;
-        cout << "Puesto: " << actual->persona.getPuesto() << endl;
-        cout << "Departamento: " << actual->persona.getDepartamento() << endl;
-        cout << "Horas Trabajadas: " << actual->persona.getHorasTrabajadas() << endl;
-        cout << "Costo por Hora: " << actual->persona.getCostoPorHora() << endl;
-        cout << "Sueldo: " << actual->persona.getSueldo() << endl;
-        cout << "-----------------------------------" << endl;
-        actual = actual->siguiente;
-    }//hola
-}
 
 
