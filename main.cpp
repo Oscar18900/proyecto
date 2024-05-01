@@ -184,7 +184,7 @@ void imprimirLista(Nodo *lista) {
         cout << "Sueldo: " << actual->persona.getSueldo() << endl;
         cout << "-----------------------------------" << endl;
         actual = actual->siguiente;
-    }
+    }//hola
 }
 
 
