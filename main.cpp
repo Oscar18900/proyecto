@@ -1,93 +1,121 @@
 #include<iostream>
 using namespace std;
 class Persona{
-	private:
-		string ID_Trabajador;
-	    string nombre;
-	    string apellidoPaterno;
-	    string apellidoMaterno;
-	    string sexo;
-	    int edad;
-	    string direccion;
-	    string telefono;
-	    string puesto;
-	    string departamento;
-	    int horasTrabajadas;
-	    double costoPorHora;
-	    double sueldo;
-	public:
-		Persona(string _ID_Trabajador,string _nombre,string _apellidoPaterno,string _apellidoMaterno,
-		string _sexo,int _edad,string _direccion,string _telefono,string _puesto,string _departamento,
-		int _horasTrabajadas,double _costoPorHora,double _sueldo):ID_Trabajador(_ID_Trabajador), nombre(_nombre), apellidoPaterno(_apellidoPaterno),
-        apellidoMaterno(_apellidoMaterno), sexo(_sexo), edad(_edad), direccion(_direccion), telefono(_telefono),
-        puesto(_puesto), departamento(_departamento), horasTrabajadas(_horasTrabajadas), costoPorHora(_costoPorHora),
-        sueldo(_horasTrabajadas * _costoPorHora) {}
-          
-       string getID_Trabajador() const {
-    return ID_Trabajador;
-}
-
-string getNombre() const {
-    return nombre;
-}
-
-string getApellidoPaterno() const {
-    return apellidoPaterno;
-}
-
-string getApellidoMaterno() const {
-    return apellidoMaterno;
-}
-
-string getSexo() const {
-    return sexo;
-}
-
-int getEdad() const {
-    return edad;
-}
-
-string getDireccion() const {
-    return direccion;
-}
-
-string getTelefono() const {
-    return telefono;
-}
-
-string getPuesto() const {
-    return puesto;
-}
-
-string getDepartamento() const {
-    return departamento;
-}
-
-int getHorasTrabajadas() const {
-    return horasTrabajadas;
-}
-
-double getCostoPorHora() const {
-    return costoPorHora;
-}
-
-double getSueldo() const {
-    return sueldo;
-}
-        
+private:
+	string ID_Trabajador;
+	string nombre;
+	string apellidoPaterno;
+	string apellidoMaterno;
+	string sexo;
+	int edad;
+	string direccion;
+	string telefono;
+	string puesto;
+	string departamento;
+	int horasTrabajadas;
+	double costoPorHora;
+	double sueldo;
+public:
+	Persona() : ID_Trabajador(""), nombre(""), apellidoPaterno(""),
+	apellidoMaterno(""), sexo(""), edad(0), direccion(""), telefono(""),
+	puesto(""), departamento(""), horasTrabajadas(0), costoPorHora(0),
+	sueldo(0) {}
+	
+	
+	Persona(string _ID_Trabajador,string _nombre,string _apellidoPaterno,string _apellidoMaterno,
+	string _sexo,int _edad,string _direccion,string _telefono,string _puesto,string _departamento,
+	int _horasTrabajadas,double _costoPorHora,double _sueldo):ID_Trabajador(_ID_Trabajador), nombre(_nombre), apellidoPaterno(_apellidoPaterno),
+	apellidoMaterno(_apellidoMaterno), sexo(_sexo), edad(_edad), direccion(_direccion), telefono(_telefono),
+	puesto(_puesto), departamento(_departamento), horasTrabajadas(_horasTrabajadas), costoPorHora(_costoPorHora),
+	sueldo(_horasTrabajadas * _costoPorHora) {}
+	
+	void setdatos(string _ID_Trabajador,string _nombre,string _apellidoPaterno,string _apellidoMaterno,
+	string _sexo,int _edad,string _direccion,string _telefono,string _puesto,string _departamento,
+	int _horasTrabajadas,double _costoPorHora,double _sueldo)
+	{
+	ID_Trabajador = _ID_Trabajador;
+	nombre = _nombre;
+	apellidoPaterno = _apellidoPaterno;
+	apellidoMaterno = _apellidoMaterno;
+	sexo = _sexo;
+	edad = _edad;
+	direccion = _direccion;
+	telefono = _telefono;
+	puesto = _puesto;
+	departamento = _departamento;
+	horasTrabajadas = _horasTrabajadas;
+	costoPorHora = _costoPorHora;
+	sueldo = _horasTrabajadas * _costoPorHora;
+	}
+	
+	string getID_Trabajador() const {
+	return ID_Trabajador;
+	}
+	
+	string getNombre() const {
+	return nombre;
+	}
+	
+	string getApellidoPaterno() const {
+	return apellidoPaterno;
+	}
+	
+	string getApellidoMaterno() const {
+	return apellidoMaterno;
+	}
+	
+	string getSexo() const {
+	return sexo;
+	}
+	
+	int getEdad() const {
+	return edad;
+	}
+	
+	string getDireccion() const {
+	return direccion;
+	}
+	
+	string getTelefono() const {
+	return telefono;
+	}
+	
+	string getPuesto() const {
+	return puesto;
+	}
+	
+	string getDepartamento() const {
+	return departamento;
+	}
+	
+	int getHorasTrabajadas() const {
+	return horasTrabajadas;
+	}
+	
+	double getCostoPorHora() const {
+	return costoPorHora;
+	}
+	
+	double getSueldo() const {
+	return sueldo;
+	}
+	
 };
 struct Nodo{
 	Persona persona;
-    Nodo* siguiente;
-    Nodo(Persona _persona) : persona(_persona), siguiente(nullptr) {}
+	Nodo* siguiente;
+	Nodo(Persona _persona) : persona(_persona), siguiente(nullptr) {}
 
 };
 
 void agregar(Nodo *&, Persona);
 void imprimirLista(Nodo *);
 
-
 int main(){
+	string ID_Trabajador, nombre, apellidoPaterno, apellidoMaterno, sexo, direccion, telefono, puesto, departamento;
+	int edad, horasTrabajadas;
+	double costoPorHora;
+	Persona persona;
 	Nodo *lista=NULL;
 	int opc;
 	do{
@@ -103,9 +131,6 @@ int main(){
 		switch(opc){
 		
 			case 1:
-				string ID_Trabajador, nombre, apellidoPaterno, apellidoMaterno, sexo, direccion, telefono, puesto, departamento;
-			    int edad, horasTrabajadas;
-			    double costoPorHora;
 			    cin.ignore(); 
 			    cout << "Ingrese el ID del trabajador (6 caracteres): ";
 			    cin >> ID_Trabajador;
@@ -133,8 +158,8 @@ int main(){
 			    cin >> horasTrabajadas;
 			    cout << "Ingrese el costo por hora del trabajador: ";
 			    cin >> costoPorHora;
-			    Persona persona(ID_Trabajador, nombre, apellidoPaterno, apellidoMaterno, sexo, edad, direccion, telefono, puesto, departamento, horasTrabajadas, costoPorHora, horasTrabajadas * costoPorHora);
-			    agregar(lista, persona);
+				persona.setdatos(ID_Trabajador, nombre, apellidoPaterno, apellidoMaterno, sexo, edad, direccion, telefono, puesto, departamento, horasTrabajadas, costoPorHora, horasTrabajadas * costoPorHora);
+				agregar(lista, persona);
 			    break;
 		
 	
