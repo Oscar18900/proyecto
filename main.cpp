@@ -113,15 +113,8 @@ struct Nodo{
 void agregar(Nodo *&, Persona);
 void imprimirLista(Nodo *);
 void eliminar(Nodo *&, int);
+bool esLetra(const string &str);
 
-bool esLetra(const string &str) {
-    for (char c : str) {
-        if (!isalpha(c)) {
-            return false;
-        }
-    }
-    return true;
-}
 
 int main(){
 	string nombre, apellidoPaterno, apellidoMaterno, sexo, direccion,  puesto, departamento;
@@ -336,4 +329,12 @@ void eliminar(Nodo *&lista, int ID){
 	else{
 		cout << "No existen registros\n";
 	}
+}
+bool esLetra(const string &str) {
+    for (char c : str) {
+        if (!isalpha(c)) {
+            return false;
+        }
+    }
+    return true;
 }
