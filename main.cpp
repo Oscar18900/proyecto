@@ -50,56 +50,56 @@ public:
 	sueldo = _horasTrabajadas * _costoPorHora;
 	}
 	
-	int get_id() const {
-	return id;
+	int get_id(){
+		return id;
 	}
 	
-	string getNombre() const {
-	return nombre;
+	string getNombre(){
+		return nombre;
 	}
 	
-	string getApellidoPaterno() const {
-	return apellidoPaterno;
+	string getApellidoPaterno(){
+		return apellidoPaterno;
 	}
 	
-	string getApellidoMaterno() const {
-	return apellidoMaterno;
+	string getApellidoMaterno(){
+		return apellidoMaterno;
 	}
 	
-	string getSexo() const {
-	return sexo;
+	string getSexo(){
+		return sexo;
 	}
 	
-	int getEdad() const {
-	return edad;
+	int getEdad(){
+		return edad;
 	}
 	
-	string getDireccion() const {
-	return direccion;
+	string getDireccion(){
+		return direccion;
 	}
 	
-	int getTelefono() const {
-	return telefono;
+	int getTelefono(){
+		return telefono;
 	}
 	
-	string getPuesto() const {
-	return puesto;
+	string getPuesto(){
+		return puesto;
 	}
 	
-	string getDepartamento() const {
-	return departamento;
+	string getDepartamento(){
+		return departamento;
 	}
 	
-	int getHorasTrabajadas() const {
-	return horasTrabajadas;
+	int getHorasTrabajadas(){
+		return horasTrabajadas;
 	}
 	
-	double getCostoPorHora() const {
-	return costoPorHora;
+	double getCostoPorHora(){
+		return costoPorHora;
 	}
 	
-	double getSueldo() const {
-	return sueldo;
+	double getSueldo(){
+		return sueldo;
 	}
 	
 };
