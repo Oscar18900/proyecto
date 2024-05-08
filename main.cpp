@@ -115,6 +115,8 @@ void imprimirLista(Nodo *);
 void eliminar(Nodo *&, int);
 bool validacionString(const string &str);
 
+
+
 int main(){
 	string nombre, apellidoPaterno, apellidoMaterno, sexo, direccion,  puesto, departamento;
 	int id,  edad, horasTrabajadas,telefono;
@@ -334,81 +336,6 @@ void eliminar(Nodo *&lista, int ID){
 		cout << "No existen registros\n";
 	}
 }
-void agregar(Nodo *&lista, Persona persona) {
-    Nodo *nuevo_nodo = new Nodo(persona);
-    nuevo_nodo->siguiente = NULL;
-
-    if (lista == nullptr) {
-        lista = nuevo_nodo;
-    } else if (nuevo_nodo->persona.getNombre() < lista->persona.getNombre()) {
-        nuevo_nodo->siguiente = lista;
-        lista = nuevo_nodo;
-    } else {
-        Nodo *actual = lista;
-        Nodo *anterior = NULL;
-        while (actual != NULL && persona.getNombre() > actual->persona.getNombre()) {
-            anterior = actual;
-            actual = actual->siguiente;
-        }
-        nuevo_nodo->siguiente = actual;
-        anterior->siguiente = nuevo_nodo;
-    }
-}
-
-void imprimirLista(Nodo *lista) {
-    Nodo *actual = lista;
-	if(actual == NULL){
-		cout << "No existen registros\n";
-	}
-	else{		
-		while (actual != NULL) {
-		cout << "ID Trabajador: " << actual->persona.getID_Trabajador() << endl;
-		cout << "Nombre: " << actual->persona.getNombre() << endl;
-		cout << "Apellido Paterno: " << actual->persona.getApellidoPaterno() << endl;
-		cout << "Apellido Materno: " << actual->persona.getApellidoMaterno() << endl;
-		cout << "Sexo: " << actual->persona.getSexo() << endl;
-		cout << "Edad: " << actual->persona.getEdad() << endl;
-		cout << "Dirección: " << actual->persona.getDireccion() << endl;
-		cout << "Teléfono: " << actual->persona.getTelefono() << endl;
-		cout << "Puesto: " << actual->persona.getPuesto() << endl;
-		cout << "Departamento: " << actual->persona.getDepartamento() << endl;
-		cout << "Horas Trabajadas: " << actual->persona.getHorasTrabajadas() << endl;
-		cout << "Costo por Hora: " << actual->persona.getCostoPorHora() << endl;
-		cout << "Sueldo: " << actual->persona.getSueldo() << endl;
-		cout << "-----------------------------------" << endl;
-		actual = actual->siguiente;
-		}
-	}
-}
-
-void eliminar(Nodo *&lista, int ID){
-	if(lista != NULL){
-		Nodo *aux_borrar;
-		Nodo *anterior = NULL;
-		aux_borrar = lista;
-		    
-		while(aux_borrar != NULL && aux_borrar->persona.getID_Trabajador() != ID)
-		{
-		    anterior = aux_borrar;
-		    aux_borrar = aux_borrar->siguiente;
-		}
-		if(aux_borrar == NULL){
-		    cout << "Esta persona no existe\n";
-		}
-			
-		else if(anterior == NULL){
-		    lista = aux_borrar->siguiente;
-		    delete aux_borrar;
-		}
-		else{
-		    anterior->siguiente = aux_borrar->siguiente;
-		    delete aux_borrar;
-		}
-	}
-	else{
-		cout << "No existen registros\n";
-	}
-}
 bool validacionString(const string &str) {
     for (char c : str) {
         if (!isalpha(c)) {
@@ -417,3 +344,4 @@ bool validacionString(const string &str) {
     }
     return true;
 }
+ 
