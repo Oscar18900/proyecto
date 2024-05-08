@@ -50,56 +50,56 @@ public:
 	sueldo = _horasTrabajadas * _costoPorHora;
 	}
 	
-	int get_id(){
-		return id;
+	int get_id() const {
+	return id;
 	}
 	
-	string getNombre(){
-		return nombre;
+	string getNombre() const {
+	return nombre;
 	}
 	
-	string getApellidoPaterno(){
-		return apellidoPaterno;
+	string getApellidoPaterno() const {
+	return apellidoPaterno;
 	}
 	
-	string getApellidoMaterno(){
-		return apellidoMaterno;
+	string getApellidoMaterno() const {
+	return apellidoMaterno;
 	}
 	
-	string getSexo(){
-		return sexo;
+	string getSexo() const {
+	return sexo;
 	}
 	
-	int getEdad(){
-		return edad;
+	int getEdad() const {
+	return edad;
 	}
 	
-	string getDireccion(){
-		return direccion;
+	string getDireccion() const {
+	return direccion;
 	}
 	
-	int getTelefono(){
-		return telefono;
+	int getTelefono() const {
+	return telefono;
 	}
 	
-	string getPuesto(){
-		return puesto;
+	string getPuesto() const {
+	return puesto;
 	}
 	
-	string getDepartamento(){
-		return departamento;
+	string getDepartamento() const {
+	return departamento;
 	}
 	
-	int getHorasTrabajadas(){
-		return horasTrabajadas;
+	int getHorasTrabajadas() const {
+	return horasTrabajadas;
 	}
 	
-	double getCostoPorHora(){
-		return costoPorHora;
+	double getCostoPorHora() const {
+	return costoPorHora;
 	}
 	
-	double getSueldo(){
-		return sueldo;
+	double getSueldo() const {
+	return sueldo;
 	}
 	
 };
@@ -113,9 +113,15 @@ struct Nodo{
 void agregar(Nodo *&, Persona);
 void imprimirLista(Nodo *);
 void eliminar(Nodo *&, int);
-bool validacionString(const string &str);
 
-
+bool esLetra(const string &str) {
+    for (char c : str) {
+        if (!isalpha(c)) {
+            return false;
+        }
+    }
+    return true;
+}
 
 int main(){
 	string nombre, apellidoPaterno, apellidoMaterno, sexo, direccion,  puesto, departamento;
@@ -145,44 +151,41 @@ int main(){
         			cin.ignore();
     			}
     			cin.ignore();
-    			do{
 				cout << "Ingrese el nombre del trabajador: ";
+                while (true) {
                 getline(cin, nombre);
-                	if (!nombre.empty() && validacionString(nombre)) {
-                    		break; 
-                	} else {
-                    	cout << "Ingrese un apellido válido (solo letras, no vacío): ";
-                	}
-            	}while(nombre.empty() || !validacionString(nombre));
-           		cin.ignore();
-                do{
-					cout << "Ingrese el apellido paterno del trabajador: ";
-                	getline(cin, apellidoPaterno);
-                	if (!apellidoPaterno.empty() && validacionString(apellidoPaterno)) {
-                    		break; 
-                	} else {
-                    	cout << "Ingrese un apellido válido (solo letras, no vacío): ";
-                	}
-            	}while(apellidoPaterno.empty() || !validacionString(apellidoPaterno));
-            	cin.ignore();
-            	do{
-					cout << "Ingrese el apellido materno del trabajador: ";
-					getline(cin,apellidoMaterno);
-					if (!apellidoMaterno.empty() && validacionString(apellidoMaterno)) {
-                    		break; 
-                	} else {
-                    	cout << "Ingrese un apellido válido (solo letras, no vacío): ";
-                	}
-            	}while(apellidoMaterno.empty() || !validacionString(apellidoMaterno));
-            	cin.ignore();
-				do{
-					cout << "Ingrese el sexo del trabajador (M o F): ";
-					cin >> sexo;
-                	if (sexo!="M"&&sexo!="F"){
+                if (!nombre.empty() && esLetra(nombre)) {
+                    break; // Sale del bucle si el nombre es válido
+                } else {
+                    cout << "Ingrese un nombre válido (solo letras, no vacío): ";
+                }
+            }
+				cout << "Ingrese el apellido paterno del trabajador: ";
+                while (true) {
+                getline(cin, apellidoPaterno);
+                if (!apellidoPaterno.empty() && esLetra(apellidoPaterno)) {
+                    break; 
+                } else {
+                    cout << "Ingrese un apellido válido (solo letras, no vacío): ";
+                }
+            }
+				cout << "Ingrese el apellido materno del trabajador: ";
+				     while (true) {
+                getline(cin, apellidoMaterno);
+                if (!apellidoMaterno.empty() && esLetra(apellidoMaterno)) {
+                    break; 
+                } else {
+                    cout << "Ingrese un apellido válido (solo letras, no vacío): ";
+                }
+            }
+				do{cout << "Ingrese el sexo del trabajador (M o F): ";
+				cin >> sexo;
+                if (sexo!="M"&&sexo!="F")
+                {
                     cout<<"caracter incorrecto"<<endl;
-               		}
+                }
+                
                 }while(sexo!="M"&&sexo!="F");
-                cin.ignore();
 				cout<< "Ingrese la edad del trabajador: ";
 				while (!(cin >> edad) || cin.peek() != '\n' || to_string(edad).length() != 2) {
 				    cout << "Ingrese su edad con el formato 00: ";
@@ -199,26 +202,24 @@ int main(){
 					cin.ignore();
 				}
 				cin.ignore();
-				do{
-				 cout<< "Ingrese el puesto del trabajador: ";
-				 getline(cin,puesto);
-					if (!puesto.empty() && validacionString(puesto)) {
-                    		break; 
-                	} else {
-                    	cout << "Ingrese un apellido válido (solo letras, no vacío): ";
-                	}
-            	}while(puesto.empty() || !validacionString(puesto));
-            	cin.ignore();
-            	do{
+				cout << "Ingrese el puesto del trabajador: ";
+				 while (true) {
+                getline(cin, puesto);
+                if (!puesto.empty() && esLetra(puesto)) {
+                    break; 
+                } else {
+                    cout << "Ingrese un puesto válido (solo letras, no vacío): ";
+                }
+            }
 				cout << "Ingrese el departamento del trabajador: ";
-				getline(cin,departamento);
-					if (!departamento.empty() && validacionString(departamento)) {
-                    		break; 
-                	} else {
-                    	cout << "Ingrese un apellido válido (solo letras, no vacío): ";
-                	}
-            	}while(departamento.empty() || !validacionString(departamento));
-            	cin.ignore();
+				 while (true) {
+                getline(cin, departamento);
+                if (!departamento.empty() && esLetra(departamento)) {
+                    break; 
+                } else {
+                    cout << "Ingrese un departamento válido (solo letras, no vacío): ";
+                }
+            }
 				cout << "Ingrese las horas trabajadas por el trabajador: ";
 				while (!(cin >> horasTrabajadas) || cin.peek() != '\n') {
 				    cout << "Ingrese valores numericos: ";
@@ -336,12 +337,3 @@ void eliminar(Nodo *&lista, int ID){
 		cout << "No existen registros\n";
 	}
 }
-bool validacionString(const string &str) {
-    for (char c : str) {
-        if (!isalpha(c)) {
-            return false;
-        }
-    }
-    return true;
-}
- 
