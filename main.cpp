@@ -49,7 +49,67 @@ public:
 	costoPorHora = _costoPorHora;
 	sueldo = _horasTrabajadas * _costoPorHora;
 	}
-	
+
+		void setid(int i)
+	{
+	    id = i;
+	}
+
+	void setnombre(string nom)
+	{
+	    nombre = nom;
+	}
+
+	void setap(string ap)
+	{
+	    apellidoPaterno = ap;
+	}
+
+	void setam(string am)
+	{
+	    apellidoMaterno = am;
+	}
+
+	void setsexo(string s)
+	{
+	    sexo = s;
+	}
+
+	void setedad(int e)
+	{
+	    edad = e;
+	}
+
+	void setdireccion(string di)
+	{
+	    direccion = di;
+	}
+
+	void settelefono(int t)
+	{
+	    telefono = t;
+	}
+
+	void setpuesto(string pue)
+	{
+	    puesto = pue;
+	}
+
+	void setdepartamento(string dep)
+	{
+	    departamento = dep;
+	}
+
+	void sethoras(int h)
+	{
+	    horasTrabajadas = h;
+	}
+
+	void setcosto(int c)
+	{
+	    costoPorHora = c;
+	}
+
 	int get_id() const {
 	return id;
 	}
@@ -113,6 +173,7 @@ struct Nodo{
 void agregar(Nodo *&, Persona);
 void imprimirLista(Nodo *);
 void eliminar(Nodo *&, int);
+void modificar(Nodo *&, int);
 bool esLetra(const string &str);
 
 
@@ -240,6 +301,11 @@ int main(){
 				cin >> id;
 				eliminar(lista, id);
 			break;
+			case 4:
+			    cout << "Ingrese el ID del empleado que desea hacer cambios\n";
+				cin >> id;
+				modificar(lista, id);
+                	break;
             		case 6:
 				cout << "Adios...\n";
 				system("pause");
@@ -330,6 +396,127 @@ void eliminar(Nodo *&lista, int ID){
 		cout << "No existen registros\n";
 	}
 }
+
+
+void modificar(Nodo *&lista, int id)
+{
+    int o = 0;
+    Nodo *aux_nodo;
+    aux_nodo = lista;
+    while(aux_nodo != NULL && id != aux_nodo->persona.get_id())
+    {
+        aux_nodo = aux_nodo->siguiente;
+    }
+    if(aux_nodo != NULL)
+    {
+        string ap, am, n, s, d, dep, p;
+        int i, e, t, h, c, o;
+        while(o != 13){
+
+            cout << "Que dato desea actualizar del siguiente empleado: " << endl;
+            cout << "1) ID Trabajador: " << aux_nodo->persona.get_id() <<  endl;
+            cout << "2) Nombre: " << aux_nodo->persona.getNombre() <<  endl;
+            cout << "3) Apellido Paterno: " << aux_nodo->persona.getApellidoPaterno() << endl;
+            cout << "4) Apellido Materno: " << aux_nodo->persona.getApellidoMaterno() << endl;
+            cout << "5) Sexo: " << aux_nodo->persona.getSexo() << endl;
+            cout << "6) Edad: "  << aux_nodo->persona.getEdad() << endl;
+            cout << "7) Direccion: " << aux_nodo->persona.getDireccion() << endl;
+            cout << "8) Telefono: " << aux_nodo->persona.getTelefono() << endl;
+            cout << "9) Puesto: " << aux_nodo->persona.getPuesto() << endl;
+            cout << "10) Departamento: " << aux_nodo->persona.getDepartamento() << endl;
+            cout << "11) Horas Trabajadas: " << aux_nodo->persona.getHorasTrabajadas() << endl;
+            cout << "12) Costo por Hora: " << aux_nodo->persona.getCostoPorHora() << endl;
+            cout << "13) SALIR" << endl;
+            cout << "-----------------------------------" << endl;
+            cin >> o;
+            switch(o)
+            {
+            case 1:
+                cout << "ID Trabajador: " << aux_nodo->persona.get_id() << endl;
+                cout << "Nuevo id: ";
+                cin >> i;
+                aux_nodo->persona.setid(i);
+                break;
+            case 2:
+                cout << "2) Nombre: " << aux_nodo->persona.getNombre() << endl;
+                cout << "Nuevo nombre: ";
+                cin >> n;
+                aux_nodo->persona.setnombre(n);
+                break;
+            case 3:
+                cout << "3) Apellido Paterno: " << aux_nodo->persona.getApellidoPaterno() << endl;
+                cout << "Nuevo apellido: ";
+                cin >> ap;
+                aux_nodo->persona.setap(ap);
+                break;
+            case 4:
+                cout << "4) Apellido Materno: " << aux_nodo->persona.getApellidoMaterno() << endl;
+                cout << "Nuevo apellido: ";
+                cin >> am;
+                aux_nodo->persona.setam(am);
+                break;
+            case 5:
+                cout << "5) Sexo: " << aux_nodo->persona.getSexo() << endl;
+                cout << "Nuevo sexo: ";
+                cin >> s;
+                aux_nodo->persona.setsexo(s);
+                break;
+            case 6:
+                cout << "6) Edad: " << aux_nodo->persona.getEdad() << endl;
+                cout << "Nueva edad: ";
+                cin >> e;
+                aux_nodo->persona.setedad(e);
+                break;
+            case 7:
+                cout << "7) Direccion: " << aux_nodo->persona.getDireccion() << endl;
+                cout << "Nueva direccion: ";
+                cin >> d;
+                aux_nodo->persona.setdireccion(d);
+                break;
+            case 8:
+                cout << "8) Telefono: " << aux_nodo->persona.getTelefono() << endl;
+                cout << "Nuevo telefono: ";
+                cin >> t;
+                aux_nodo->persona.settelefono(t);
+                break;
+            case 9:
+                cout << "9) Puesto: " << aux_nodo->persona.getPuesto() << endl;
+                cout << "Nuevo puesto: ";
+                cin >> p;
+                aux_nodo->persona.setpuesto(p);
+                break;
+            case 10:
+                cout << "10) Departamento: " << aux_nodo->persona.getDepartamento() << endl;
+                cout << "Nuevo departamento: ";
+                cin >> dep;
+                aux_nodo->persona.setdepartamento(dep);
+                break;
+            case 11:
+                cout << "11) Horas Trabajadas: " << aux_nodo->persona.getHorasTrabajadas() << endl;
+                cout << "Nueva cantidad de horas trabajadas: ";
+                cin >> h;
+                aux_nodo->persona.sethoras(h);
+                break;
+            case 12:
+                cout << "12) Costo por Hora: " << aux_nodo->persona.getCostoPorHora() << endl;
+                cout << "Nuevo costo por hora: ";
+                cin >> c;
+                aux_nodo->persona.setcosto(c);
+                break;
+                default:
+                cout << "Tas bien?..." << endl;
+            }
+            system("pause");
+            system("cls");
+		}
+
+    }
+    else
+    {
+        cout << "No existe..." << endl;
+    }
+}
+
 bool esLetra(const string &str) {
     for (char c : str) {
         if (!isalpha(c)) {
