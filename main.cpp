@@ -381,6 +381,7 @@ void eliminar(Nodo *&lista, int ID){
 		}
 		if(aux_borrar == NULL){
 		    cout << "Esta persona no existe\n";
+			system("pause");
 		}
 			
 		else if(anterior == NULL){
