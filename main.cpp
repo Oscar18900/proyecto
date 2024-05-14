@@ -175,8 +175,8 @@ void imprimirLista(Nodo *);
 void eliminar(Nodo *&, int);
 void modificar(Nodo *&, int);
 bool esLetra(const string &str);
-void imprimeUsuario(Nodo *&, int);
-
+Nodo* buscarPorID(Nodo *,int);
+Nodo* buscarPorNombre(Nodo *,string);
 
 int main(){
 	string nombre, apellidoPaterno, apellidoMaterno, sexo, direccion,  puesto, departamento;
@@ -312,12 +312,63 @@ int main(){
 				system("pause");
 			break;
 			case 5:
-				int idUsuario;
-			    cout << "Ingrese el ID del empleado que desea consultar: ";
-			    cin >> idUsuario;
-			    imprimeUsuario(lista, idUsuario);
-			    system("pause");
-			    break;
+				int opcionConsulta;
+                cout << "¿Qué empleado deseas consultar?" << endl;
+                cout << "1. Por ID" << endl;
+                cout << "2. Por nombre completo" << endl;
+                cin >> opcionConsulta;
+                if (opcionConsulta == 1) {
+                    int idConsulta;
+                    cout << "Dame por favor su ID: ";
+                    cin >> idConsulta;
+                    Nodo* empleadoID = buscarPorID(lista, idConsulta);
+                    if (empleadoID != nullptr) {
+                        cout << "Información del empleado encontrado por ID:" << endl;
+                        cout << "ID Trabajador: " << empleadoID->persona.get_id() << endl;
+                        cout << "Nombre: " << empleadoID->persona.getNombre() << endl;
+                        cout << "Apellido Paterno: " << empleadoID->persona.getApellidoPaterno() << endl;
+                        cout << "Apellido Materno: " << empleadoID->persona.getApellidoMaterno() << endl;
+                        cout << "Sexo: " << empleadoID->persona.getSexo() << endl;
+                        cout << "Edad: " << empleadoID->persona.getEdad() << endl;
+                        cout << "Dirección: " << empleadoID->persona.getDireccion() << endl;
+                        cout << "Teléfono: " << empleadoID->persona.getTelefono() << endl;
+                        cout << "Puesto: " << empleadoID->persona.getPuesto() << endl;
+                        cout << "Departamento: " << empleadoID->persona.getDepartamento() << endl;
+                        cout << "Horas Trabajadas: " << empleadoID->persona.getHorasTrabajadas() << endl;
+                        cout << "Costo por Hora: " << empleadoID->persona.getCostoPorHora() << endl;
+                        cout << "Sueldo: " << empleadoID->persona.getSueldo() << endl;
+                    } else {
+                        cout << "El empleado no se encontró en la nómina." << endl;
+                    }
+                } else if (opcionConsulta == 2) {
+                    cin.ignore();
+                    string nombreCompleto;
+                    cout << "Dame por favor su nombre completo: ";
+                    getline(cin, nombreCompleto);
+                    Nodo* empleadoNombre = buscarPorNombre(lista, nombreCompleto);
+                    if (empleadoNombre != nullptr) {
+                        cout << "Información del empleado encontrado por nombre completo:" << endl;
+                        cout << "ID Trabajador: " << empleadoNombre->persona.get_id() << endl;
+                        cout << "Nombre: " << empleadoNombre->persona.getNombre() << endl;
+                        cout << "Apellido Paterno: " << empleadoNombre->persona.getApellidoPaterno() << endl;
+                        cout << "Apellido Materno: " << empleadoNombre->persona.getApellidoMaterno() << endl;
+                        cout << "Sexo: " << empleadoNombre->persona.getSexo() << endl;
+                        cout << "Edad: " << empleadoNombre->persona.getEdad() << endl;
+                        cout << "Dirección: " << empleadoNombre->persona.getDireccion() << endl;
+                        cout << "Teléfono: " << empleadoNombre->persona.getTelefono() << endl;
+                        cout << "Puesto: " << empleadoNombre->persona.getPuesto() << endl;
+                        cout << "Departamento: " << empleadoNombre->persona.getDepartamento() << endl;
+                        cout << "Horas Trabajadas: " << empleadoNombre->persona.getHorasTrabajadas() << endl;
+                        cout << "Costo por Hora: " << empleadoNombre->persona.getCostoPorHora() << endl;
+                        cout << "Sueldo: " << empleadoNombre->persona.getSueldo() << endl;
+                    } else {
+                        cout << "El empleado no se encontró en la nómina." << endl;
+                    }
+                } else {
+                    cout << "Opción inválida." << endl;
+                }
+                system("pause");
+                break;
 			default: 
 				cout << "Opcion no valida\n";
 				system("pause");
