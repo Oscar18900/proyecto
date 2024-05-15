@@ -200,7 +200,7 @@ int main(){
 			case 1:
 				cin.ignore(); 
 				cout << "Ingrese el ID del trabajador (6 caracteres): ";
-				while (!(cin >> id) || cin.peek() != '\n' || to_string(id).length() != 6) {
+				while (!(cin >> id) || to_string(id).length() != 6) {
         			cout << "El ID del trabajador debe ser un número entero de 6 dígitos. Inténtalo de nuevo: ";
         			cin.clear();
         			cin.ignore();
@@ -242,7 +242,7 @@ int main(){
                 
                 }while(sexo!="M"&&sexo!="F");
 				cout<< "Ingrese la edad del trabajador: ";
-				while (!(cin >> edad) || cin.peek() != '\n' || to_string(edad).length() != 2) {
+				while (!(cin >> edad) || to_string(edad).length() != 2) {
 				    cout << "Ingrese su edad con el formato 00: ";
 		    		cin.clear();		        	
 					cin.ignore();
@@ -251,7 +251,7 @@ int main(){
 				cout << "Ingrese la dirección del trabajador: ";
 				getline(cin, direccion);
 				cout << "Ingrese el teléfono del trabajador: ";
-				while (!(cin >> telefono) || cin.peek() != '\n') {
+				while (!(cin >> telefono)) {
 				    cout << "Ingrese valores numericos: ";
 		    		cin.clear();		        	
 					cin.ignore();
@@ -276,14 +276,14 @@ int main(){
                 }
             }
 				cout << "Ingrese las horas trabajadas por el trabajador: ";
-				while (!(cin >> horasTrabajadas) || cin.peek() != '\n') {
+				while (!(cin >> horasTrabajadas)) {
 				    cout << "Ingrese valores numericos: ";
 		    		cin.clear();		        	
 					cin.ignore();
 				}
 				cin.ignore();
 				cout << "Ingrese el costo por hora del trabajador: ";
-				 while (!(cin >> costoPorHora) || cin.peek() != '\n') {
+				 while (!(cin >> costoPorHora)) {
 				    cout << "Ingrese valores numericos: ";
 		    		cin.clear();		        	
 					cin.ignore();
