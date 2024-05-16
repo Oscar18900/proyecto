@@ -22,15 +22,15 @@ public:
 	apellidoMaterno(""), sexo(""), edad(0), direccion(""), telefono(0),
 	puesto(""), departamento(""), horasTrabajadas(0), costoPorHora(0),
 	sueldo(0) {}
-	
-	
+
+
 	Persona(int _id,string _nombre,string _apellidoPaterno,string _apellidoMaterno,
 	string _sexo,int _edad,string _direccion,int _telefono,string _puesto,string _departamento,
 	int _horasTrabajadas,double _costoPorHora,double _sueldo):id(_id), nombre(_nombre), apellidoPaterno(_apellidoPaterno),
 	apellidoMaterno(_apellidoMaterno), sexo(_sexo), edad(_edad), direccion(_direccion), telefono(_telefono),
 	puesto(_puesto), departamento(_departamento), horasTrabajadas(_horasTrabajadas), costoPorHora(_costoPorHora),
 	sueldo(_horasTrabajadas * _costoPorHora) {}
-	
+
 	void setdatos(int _id,string _nombre,string _apellidoPaterno,string _apellidoMaterno,
 	string _sexo,int _edad,string _direccion,int _telefono,string _puesto,string _departamento,
 	int _horasTrabajadas,double _costoPorHora,double _sueldo)
@@ -113,55 +113,55 @@ public:
 	int get_id() const {
 		return id;
 	}
-	
+
 	string getNombre(){
 		return nombre;
 	}
-	
+
 	string getApellidoPaterno(){
 		return apellidoPaterno;
 	}
-	
+
 	string getApellidoMaterno(){
 		return apellidoMaterno;
 	}
-	
+
 	string getSexo(){
 		return sexo;
 	}
-	
+
 	int getEdad(){
 		return edad;
 	}
-	
+
 	string getDireccion(){
 		return direccion;
 	}
-	
+
 	int getTelefono(){
 		return telefono;
 	}
-	
+
 	string getPuesto(){
 		return puesto;
 	}
-	
+
 	string getDepartamento(){
 		return departamento;
 	}
-	
+
 	int getHorasTrabajadas(){
 		return horasTrabajadas;
 	}
-	
+
 	double getCostoPorHora(){
 		return costoPorHora;
 	}
-	
+
 	double getSueldo(){
 		return sueldo;
 	}
-	
+
 };
 struct Nodo{
 	Persona persona;
@@ -177,10 +177,11 @@ void modificar(Nodo *&, int);
 bool esLetra(const string &str);
 Nodo* buscarPorID(Nodo *,int);
 Nodo* buscarPorNombre(Nodo *,string);
+bool mensaje_mostrado = false;
 
 int main(){
 	string nombre, apellidoPaterno, apellidoMaterno, sexo, direccion,  puesto, departamento;
-	int id,  edad, horasTrabajadas,telefono;
+	int id,  edad, opcionConsulta, horasTrabajadas,telefono;
 	double costoPorHora;
 	Persona persona;
 	Nodo *lista=NULL;
@@ -193,102 +194,141 @@ int main(){
 		cout<<"4.-Realizar cambios en la nomina"<<endl;
 		cout<<"5.-Consultar informacion de un empleado"<<endl;
 		cout<<"6.-Salir"<<endl;
-		cin>>opc;
-		
+		///cin>>opc;
+        while (!(cin >> opc || to_string(opc).length() != 1)) {
+            if (!mensaje_mostrado) {
+                cout << "Ingrese 1 valor numerico: ";
+                mensaje_mostrado = true;
+            }
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+
 		switch(opc){
-		
+
 			case 1:
-				cin.ignore(); 
+				cin.ignore();
 				cout << "Ingrese el ID del trabajador (6 caracteres): ";
-				while (!(cin >> id) || to_string(id).length() != 6) {
-        			cout << "El ID del trabajador debe ser un número entero de 6 dígitos. Inténtalo de nuevo: ";
-        			cin.clear();
-        			cin.ignore();
-    			}
+                while (!(cin >> id) || to_string(id).length() != 6) {
+                    if (!mensaje_mostrado) {
+                        cout << "El ID del trabajador debe ser un número entero de 6 dígitos. Inténtalo de nuevo: ";;
+                        mensaje_mostrado = true;
+                    }
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
     			cin.ignore();
+
 				cout << "Ingrese el nombre del trabajador: ";
                 while (true) {
-                getline(cin, nombre);
-                if (!nombre.empty() && esLetra(nombre)) {
-                    break; // Sale del bucle si el nombre es válido
-                } else {
-                    cout << "Ingrese un nombre válido (solo letras, no vacío): ";
+                    getline(cin, nombre);
+                    if (!nombre.empty() && esLetra(nombre)) {
+                        break; // Sale del bucle si el nombre es válido
+                    } else {
+                        cout << "Ingrese un nombre válido (solo letras, no vacío): ";
+                    }
                 }
-            }
+
 				cout << "Ingrese el apellido paterno del trabajador: ";
                 while (true) {
-                getline(cin, apellidoPaterno);
-                if (!apellidoPaterno.empty() && esLetra(apellidoPaterno)) {
-                    break; 
-                } else {
-                    cout << "Ingrese un apellido válido (solo letras, no vacío): ";
+                    getline(cin, apellidoPaterno);
+                    if (!apellidoPaterno.empty() && esLetra(apellidoPaterno)) {
+                        break;
+                    } else {
+                        cout << "Ingrese un apellido válido (solo letras, no vacío): ";
+                    }
                 }
-            }
+
 				cout << "Ingrese el apellido materno del trabajador: ";
-				     while (true) {
-                getline(cin, apellidoMaterno);
-                if (!apellidoMaterno.empty() && esLetra(apellidoMaterno)) {
-                    break; 
-                } else {
-                    cout << "Ingrese un apellido válido (solo letras, no vacío): ";
+                while (true) {
+                    getline(cin, apellidoMaterno);
+                    if (!apellidoMaterno.empty() && esLetra(apellidoMaterno)) {
+                        break;
+                    } else {
+                        cout << "Ingrese un apellido válido (solo letras, no vacío): ";
+                    }
                 }
-            }
-				do{cout << "Ingrese el sexo del trabajador (M o F): ";
-				cin >> sexo;
-                if (sexo!="M"&&sexo!="F")
-                {
-                    cout<<"caracter incorrecto"<<endl;
-                }
-                
+
+				do{
+                    cout << "Ingrese el sexo del trabajador (M o F): ";
+                    cin >> sexo;
+                    if (sexo!="M"&&sexo!="F")
+                    {
+                        cout<<"caracter incorrecto"<<endl;
+                    }
                 }while(sexo!="M"&&sexo!="F");
+
 				cout<< "Ingrese la edad del trabajador: ";
 				while (!(cin >> edad) || to_string(edad).length() != 2) {
-				    cout << "Ingrese su edad con el formato 00: ";
-		    		cin.clear();		        	
-					cin.ignore();
-				}                
-				cin.ignore(); 
+                    if (!mensaje_mostrado) {
+                        cout << "Ingrese su edad con el formato 00: ";;
+                        mensaje_mostrado = true;
+                    }
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
+				cin.ignore();
+
 				cout << "Ingrese la dirección del trabajador: ";
 				getline(cin, direccion);
 				cout << "Ingrese el teléfono del trabajador: ";
 				while (!(cin >> telefono)) {
-				    cout << "Ingrese valores numericos: ";
-		    		cin.clear();		        	
-					cin.ignore();
-				}
+                    if (!mensaje_mostrado) {
+                        cout << "Ingrese valores numericos";;
+                        mensaje_mostrado = true;
+                    }
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
 				cin.ignore();
+
 				cout << "Ingrese el puesto del trabajador: ";
-				 while (true) {
-                getline(cin, puesto);
-                if (!puesto.empty() && esLetra(puesto)) {
-                    break; 
-                } else {
-                    cout << "Ingrese un puesto válido (solo letras, no vacío): ";
+                while (true) {
+                    getline(cin, puesto);
+                    if (!puesto.empty() && esLetra(puesto)) {
+                        break;
+                    } else {
+                        cout << "Ingrese un puesto válido (solo letras, no vacío): ";
+                    }
                 }
-            }
+
 				cout << "Ingrese el departamento del trabajador: ";
-				 while (true) {
-                getline(cin, departamento);
-                if (!departamento.empty() && esLetra(departamento)) {
-                    break; 
-                } else {
-                    cout << "Ingrese un departamento válido (solo letras, no vacío): ";
+                while (true) {
+                    getline(cin, departamento);
+                    if (!departamento.empty() && esLetra(departamento)) {
+                        break;
+                    } else {
+                        cout << "Ingrese un departamento válido (solo letras, no vacío): ";
+                    }
                 }
-            }
+
 				cout << "Ingrese las horas trabajadas por el trabajador: ";
 				while (!(cin >> horasTrabajadas)) {
-				    cout << "Ingrese valores numericos: ";
-		    		cin.clear();		        	
-					cin.ignore();
-				}
+                    if (!mensaje_mostrado) {
+                        cout << "Ingrese valores numericos: ";;
+                        mensaje_mostrado = true;
+                    }
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
 				cin.ignore();
+
 				cout << "Ingrese el costo por hora del trabajador: ";
-				 while (!(cin >> costoPorHora)) {
-				    cout << "Ingrese valores numericos: ";
-		    		cin.clear();		        	
-					cin.ignore();
-				}
-                
+                while (!(cin >> costoPorHora)) {
+                    if (!mensaje_mostrado) {
+                        cout << "Ingrese valores numericos: ";;
+                        mensaje_mostrado = true;
+                    }
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
+
 				persona.setdatos(id, nombre, apellidoPaterno, apellidoMaterno, sexo, edad, direccion, telefono, puesto, departamento, horasTrabajadas, costoPorHora, horasTrabajadas * costoPorHora);
 				agregar(lista, persona);
 			break;
@@ -369,11 +409,13 @@ int main(){
                 }
                 system("pause");
                 break;
-			default: 
-				cout << "Opcion no valida\n";
-				system("pause");
-			break;
-			
+                default:
+                    cout << "Opcion no valida\n";
+                    system("pause");
+                    cin.clear();
+                    cin.ignore();
+                break;
+
 		}
 		system("cls");
 	}while(opc != 6);
@@ -406,7 +448,7 @@ void imprimirLista(Nodo *lista) {
 	if(actual == NULL){
 		cout << "No existen registros\n";
 	}
-	else{		
+	else{
 		while (actual != NULL) {
 		cout << "ID Trabajador: " << actual->persona.get_id() << endl;
 		cout << "Nombre: " << actual->persona.getNombre() << endl;
@@ -432,7 +474,7 @@ void eliminar(Nodo *&lista, int ID){
 		Nodo *aux_borrar;
 		Nodo *anterior = NULL;
 		aux_borrar = lista;
-		    
+
 		while(aux_borrar != NULL && aux_borrar->persona.get_id() != ID)
 		{
 		    anterior = aux_borrar;
@@ -442,7 +484,7 @@ void eliminar(Nodo *&lista, int ID){
 		    cout << "Esta persona no existe\n";
 		    system("pause");
 		}
-			
+
 		else if(anterior == NULL){
 		    lista = aux_borrar->siguiente;
 		    delete aux_borrar;
@@ -494,73 +536,151 @@ void modificar(Nodo *&lista, int id)
             case 1:
                 cout << "ID Trabajador: " << aux_nodo->persona.get_id() << endl;
                 cout << "Nuevo id: ";
-                cin >> i;
+                while (!(cin >> i) || to_string(i).length() != 6) {
+                    if (!mensaje_mostrado) {
+                        cout << "El ID del trabajador debe ser un número entero de 6 dígitos. Inténtalo de nuevo: ";;
+                        mensaje_mostrado = true;
+                    }
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
                 aux_nodo->persona.setid(i);
                 break;
             case 2:
                 cout << "2) Nombre: " << aux_nodo->persona.getNombre() << endl;
                 cout << "Nuevo nombre: ";
-                cin >> n;
+                while (true) {
+                    getline(cin, n);
+                    if (!n.empty() && esLetra(n)) {
+                        break; // Sale del bucle si el nombre es válido
+                    } else {
+                        cout << "Ingrese un nombre válido (solo letras, no vacío): ";
+                    }
+                }
+
                 aux_nodo->persona.setnombre(n);
                 break;
             case 3:
                 cout << "3) Apellido Paterno: " << aux_nodo->persona.getApellidoPaterno() << endl;
                 cout << "Nuevo apellido: ";
-                cin >> ap;
+                while (true) {
+                    getline(cin, ap);
+                    if (!ap.empty() && esLetra(ap)) {
+                        break;
+                    } else {
+                        cout << "Ingrese un apellido válido (solo letras, no vacío): ";
+                    }
+                }
                 aux_nodo->persona.setap(ap);
                 break;
             case 4:
                 cout << "4) Apellido Materno: " << aux_nodo->persona.getApellidoMaterno() << endl;
                 cout << "Nuevo apellido: ";
-                cin >> am;
+                while (true) {
+                    getline(cin, am);
+                    if (!am.empty() && esLetra(am)) {
+                        break;
+                    } else {
+                        cout << "Ingrese un apellido válido (solo letras, no vacío): ";
+                    }
+                }
                 aux_nodo->persona.setam(am);
                 break;
             case 5:
                 cout << "5) Sexo: " << aux_nodo->persona.getSexo() << endl;
-                cout << "Nuevo sexo: ";
-                cin >> s;
+                do{
+                    cout << "Ingrese el nuevo sexo del trabajador (M o F): ";
+                    cin >> s;
+                    if (s!="M"&&s!="F")
+                    {
+                        cout<<"caracter incorrecto"<<endl;
+                    }
+                }while(s!="M"&&s!="F");
+
                 aux_nodo->persona.setsexo(s);
                 break;
             case 6:
                 cout << "6) Edad: " << aux_nodo->persona.getEdad() << endl;
                 cout << "Nueva edad: ";
-                cin >> e;
+                while (!(cin >> e) || to_string(e).length() != 2) {
+                    if (!mensaje_mostrado) {
+                        cout << "Ingrese su edad con el formato 00: ";;
+                        mensaje_mostrado = true;
+                    }
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
                 aux_nodo->persona.setedad(e);
                 break;
             case 7:
                 cout << "7) Direccion: " << aux_nodo->persona.getDireccion() << endl;
                 cout << "Nueva direccion: ";
-                cin >> d;
+                getline(cin, d);
                 aux_nodo->persona.setdireccion(d);
                 break;
             case 8:
                 cout << "8) Telefono: " << aux_nodo->persona.getTelefono() << endl;
                 cout << "Nuevo telefono: ";
-                cin >> t;
+                while (!(cin >> t)) {
+                    if (!mensaje_mostrado) {
+                        cout << "Ingrese valores numericos";;
+                        mensaje_mostrado = true;
+                    }
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
                 aux_nodo->persona.settelefono(t);
                 break;
             case 9:
                 cout << "9) Puesto: " << aux_nodo->persona.getPuesto() << endl;
                 cout << "Nuevo puesto: ";
-                cin >> p;
+                while (true) {
+                    getline(cin, p);
+                    if (!p.empty() && esLetra(p)) {
+                        break;
+                    } else {
+                        cout << "Ingrese un puesto válido (solo letras, no vacío): ";
+                    }
+                }
                 aux_nodo->persona.setpuesto(p);
                 break;
             case 10:
                 cout << "10) Departamento: " << aux_nodo->persona.getDepartamento() << endl;
                 cout << "Nuevo departamento: ";
-                cin >> dep;
+                while (true) {
+                    getline(cin, dep);
+                    if (!dep.empty() && esLetra(dep)) {
+                        break;
+                    } else {
+                        cout << "Ingrese un departamento válido (solo letras, no vacío): ";
+                    }
+                }
                 aux_nodo->persona.setdepartamento(dep);
                 break;
             case 11:
                 cout << "11) Horas Trabajadas: " << aux_nodo->persona.getHorasTrabajadas() << endl;
                 cout << "Nueva cantidad de horas trabajadas: ";
-                cin >> h;
+                while (!(cin >> h)) {
+                    if (!mensaje_mostrado) {
+                        cout << "Ingrese valores numericos: ";;
+                        mensaje_mostrado = true;
+                    }
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
                 aux_nodo->persona.sethoras(h);
                 break;
             case 12:
                 cout << "12) Costo por Hora: " << aux_nodo->persona.getCostoPorHora() << endl;
                 cout << "Nuevo costo por hora: ";
-                cin >> c;
+                while (!(cin >> c)) {
+                    if (!mensaje_mostrado) {
+                        cout << "Ingrese valores numericos: ";;
+                        mensaje_mostrado = true;
+                    }
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
                 aux_nodo->persona.setcosto(c);
                 break;
                 default:
